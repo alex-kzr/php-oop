@@ -16,18 +16,36 @@
             return "$this->username added a new friend";
         }
 
+        // getters
+        public function getEmail() {
+            return $this->email;
+        }
+
+
+        // setters
+        public function setEmail($email) {
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                return 'email must be a valid email address';
+            }
+            $this->email = $email;
+            return "email is changed to $this->email";
+        }
+
     }
 
     $userOne = new User('mario', 'mario@aaa.com');
     $userTwo = new User('luigi', 'luigi@aaa.com');
 
     // echo $userOne->username . '<br>';
-    // echo $userOne->email . '<br>';
+    echo $userOne->getEmail() . '<br>';
     echo $userOne->addFriend() . '<br>';
 
     // echo $userTwo->username . '<br>';
-    // echo $userTwo->email . '<br>';
+    echo $userTwo->getEmail() . '<br>';
     echo $userTwo->addFriend() . '<br>';
+
+    echo $userOne->setEmail('mario@xxx.com') . '<br>';
+    echo $userTwo->setEmail('luigi') . '<br>';
 
 ?>
 
