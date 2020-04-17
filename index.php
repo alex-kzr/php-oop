@@ -4,8 +4,8 @@
 
     class User {
         
-        public $username;
-        public $email;
+        private $username;
+        private $email;
 
         public function __construct($username, $email) {
             $this->username = $username;
@@ -21,12 +21,12 @@
     $userOne = new User('mario', 'mario@aaa.com');
     $userTwo = new User('luigi', 'luigi@aaa.com');
 
-    echo $userOne->username . '<br>';
-    echo $userOne->email . '<br>';
+    // echo $userOne->username . '<br>';
+    // echo $userOne->email . '<br>';
     echo $userOne->addFriend() . '<br>';
 
-    echo $userTwo->username . '<br>';
-    echo $userTwo->email . '<br>';
+    // echo $userTwo->username . '<br>';
+    // echo $userTwo->email . '<br>';
     echo $userTwo->addFriend() . '<br>';
 
 ?>
