@@ -4,7 +4,7 @@
 
     class User {
         
-        private $username;
+        public $username;
         private $email;
 
         public function __construct($username, $email) {
@@ -33,19 +33,22 @@
 
     }
 
+    class AdminUser extends User {
+        public $level;
+
+        public function __construct($username, $email, $level) {
+            $this->level = $level;
+            parent::__construct($username, $email);
+        }
+    }
+
     $userOne = new User('mario', 'mario@aaa.com');
     $userTwo = new User('luigi', 'luigi@aaa.com');
+    $userThree = new AdminUser('yoshi', 'yoshi@aaa.com', 5);
 
-    // echo $userOne->username . '<br>';
-    echo $userOne->getEmail() . '<br>';
-    echo $userOne->addFriend() . '<br>';
-
-    // echo $userTwo->username . '<br>';
-    echo $userTwo->getEmail() . '<br>';
-    echo $userTwo->addFriend() . '<br>';
-
-    echo $userOne->setEmail('mario@xxx.com') . '<br>';
-    echo $userTwo->setEmail('luigi') . '<br>';
+    echo $userThree->username . '<br>';
+    echo $userThree->getEmail() . '<br>';
+    echo $userThree->level . '<br>';
 
 ?>
 
