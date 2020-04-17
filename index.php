@@ -6,72 +6,28 @@
 
     echo 'classes:' . '<br>';
 
-    class User {
+    class Weather {
         
-        public $username;
-        protected $email;
-        public $role = 'member';
+        public static $tempConditions = ['cold', 'mild', 'warm'];
 
-        public function __construct($username, $email) {
-            $this->username = $username;
-            $this->email = $email;
+        public static function celsiusToFarenheit($c){
+            return $c * 9 / 5 + 32;
         }
 
-        public function __destruct() {
-            echo "$this->username was removed <br>";
-        }
-
-        public function __clone() {
-            $this->username = $this->username . '(cloned)';
-        }
-
-        public function addFriend() {
-            return "$this->username added a new friend";
-        }
-
-        public function message(){
-            return "$this->email sent a new message";
-        }
-
-        // getters
-        public function getEmail() {
-            return $this->email;
-        }
-
-
-        // setters
-        public function setEmail($email) {
-            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                return 'email must be a valid email address';
+        public static function determineTempConditions($f){
+            if($f < 40){
+                return self::$tempConditions[0];
+            }else if($f < 70){
+                return self::$tempConditions[1];
+            }else{
+                return self::$tempConditions[2];
             }
-            $this->email = $email;
-            return "email is changed to $this->email";
         }
-
     }
 
-    class AdminUser extends User {
-        
-        public $level;
-        public $role = 'admin';
-
-        public function __construct($username, $email, $level) {
-            $this->level = $level;
-            parent::__construct($username, $email);
-        }
-        
-        public function message(){
-            return "$this->email, an admin, sent a new message";
-        }
-
-    }
-
-    $userOne = new User('mario', 'mario@aaa.com');
-    $userTwo = new User('luigi', 'luigi@aaa.com');
-    $userThree = new AdminUser('yoshi', 'yoshi@aaa.com', 5);
-
-    //unset($userOne);
-    $userFour = clone $userOne;
+    print_r(Weather::$tempConditions);
+    echo Weather::celsiusToFarenheit(20) . '<br>';
+    echo Weather::determineTempConditions(56);
 
 ?>
 
